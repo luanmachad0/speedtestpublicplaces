@@ -46,6 +46,8 @@ gem "jsbundling-rails"
 
 gem "cssbundling-rails"
 
+gem 'ffi'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -73,4 +75,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "factory_bot"
+  gem "faker"
 end
