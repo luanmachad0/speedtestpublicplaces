@@ -13,6 +13,13 @@ export default function NewInternetSpeed() {
   const MAX_REQUESTS_FOR_SPEED_TEST = 5
   const SPEED_TEST_PING_INTERVAL_MS = 1000
 
+  const placeFieldsMissing = placeName.length == 0 || placeCity.length == 0 || placeAddress.length == 0;
+  let buttonClass = "w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+  
+  if (placeFieldsMissing) {
+    buttonClass = "w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full focus:outline-none focus:shadow-outline disabled:opacity-25"
+  }
+
   useEffect(() => {
     if (latestDownloadSpeed) {
       const newDownloadSpeeds = [...downloadSpeeds, latestDownloadSpeed]
@@ -117,7 +124,8 @@ export default function NewInternetSpeed() {
         }
         {!testInProgress && downloadSpeeds.length == 0 && (
           <button
-            className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+            disabled={placeFieldsMissing}
+            className={buttonClass}
             type="button"
             onClick={() => setTestInProgress(true)}
           >
